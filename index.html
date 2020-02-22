@@ -4,35 +4,43 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js – The HTML Presentation Framework</title>
+		<title>Application Security </title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="A presentation on application security for java developers">
+		<meta name="author" content="Bala Gangadhar Addanki">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="lib/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="lib/reveal.js/css/theme/black.css" id="theme">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/reveal.js/lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'lib/reveal.js/css/print/pdf.css' : 'lib/reveal.js/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
 		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
+		<script src="lib/reveal.js/lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+		<style>
+			.reveal .slide-number {
+				font-size: 0.6em;
+			}
+			#toggle-chalkboard {
+				display: none;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -41,40 +49,47 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
+				<section data-menu-title="Authentication">
 					<section>
 						<h2>Authentication</h2>
 						<p>
-							This
+							Spring auth, jsession, oauth, jwt
 						</p>
 					</section>
-					<section>
-						<h2>Password</h2>
-						<p>
-							This
-						</p>
+					<section data-menu-title="Java Web Token">
+						<h2>Java Web Token(JWT)</h2>
 					</section>
-					<section>
-						<h2>JWT</h2>
-						<p>
-							This
-						</p>
+
+					<section data-menu-title="Oauth2">
+						<h2>Oauth2</h2>
+					</section>
+
+					<section data-menu-title="jsession">
+						<h2>Jsession</h2>
 					</section>
 				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Authorization
-
-						```
-						<section data-markdown>
-						  ## Oauth2
-
-						</section>
-						```
-					</script>
+				<section data-menu-title="Authorization">
+					<section>
+						<h2>Authorization</h2>
+						<p>
+							Spring auth, jsession, oauth, jwt
+						</p>
+					</section>
+					<section data-menu-title="oauth2">
+						<h2>oauthws</h2>
+					</section>
 				</section>
-				<section data-markdown>
+
+				<section data-menu-title="Session Management">
+					<h2>Session Management</h2>
+				</section>
+
+				<section data-menu-title="API Security">
+					<h2>API Security</h2>
+				</section>
+
+				<section data-markdown data-menu-title="Thank you">
 					## Thank you
 				</section>
 
@@ -82,31 +97,51 @@
 
 		</div>
 
-		<script src="js/reveal.js"></script>
+		<script src="lib/reveal.js/lib/js/head.min.js"></script>
+		<script src="lib/reveal.js/js/reveal.js"></script>
 
 		<script>
 
-			// More info https://github.com/hakimel/reveal.js#configuration
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
 				progress: true,
+				history: true,
 				center: true,
-				hash: true,
+				slideNumber: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true },
-					{ src: 'plugin/search/search.js', async: true },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true },
+				menu: {
+					numbers: true,
+					openSlideNumber: true,
+					themes: true,
+					themesPath: 'lib/reveal.js/css/theme/',
+					transitions: true
+				},
+				chalkboard: {
+					boardmarkerWidth: 3,
+					chalkWidth: 7,
+					chalkEffect: 1.0,
+					src: null,
+					readOnly: undefined,
+					toggleChalkboardButton: { left: "30px", bottom: "30px", top: "auto", right: "auto" },
+					toggleNotesButton: { left: "30px", bottom: "30px", top: "auto", right: "auto" },
+					transition: 800,
+			},
+			dependencies: [
+					{ src: 'lib/reveal.js/plugin/highlight/highlight.js' },
+					{ src: 'lib/reveal.js/plugin/markdown/marked.js' },
+					{ src: 'lib/reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'lib/reveal.js/plugin/notes/notes.js' },
+					{ src: 'lib/reveal.js/plugin/print-pdf/print-pdf.js' },
+					{ src: 'lib/reveal.js/plugin/search/search.js' },
+					{ src: 'lib/reveal.js/plugin/zoom-js/zoom.js' },
 					{ src: 'plugin/menu/menu.js' },
 					{ src: 'plugin/chalkboard/chalkboard.js' }
 				],
-				keyboard: {
+			keyboard: {
 					67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
 					66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
 					46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
@@ -114,36 +149,8 @@
 					68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
 					88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed
 					89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed
-				},
+				},	
 			});
-
-		</script>
-
-		<!-- Everything below this point is only used for the reveal.js demo page -->
-
-
-		<script>
-		var _gaq = [['_setAccount', 'UA-15240703-1'], ['_trackPageview']];
-		(function(d, t) {
-		var g = d.createElement(t),
-			s = d.getElementsByTagName(t)[0];
-		g.async = true;
-		g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		s.parentNode.insertBefore(g, s);
-		})(document, 'script');
-		</script>
-
-		<script>
-			[].slice.call( document.querySelectorAll( '.share-reveal-facebook, .share-reveal-twitter' ) ).forEach( function( element ) {
-				element.addEventListener( 'click', function( event ) {
-					event.preventDefault();
-					var width = 500, height = 300;
-					var winTop = window.screenY + (window.screen.height / 2) - (height / 2);
-					var winLeft = window.screenX + (window.screen.width / 2) - (width / 2);
-					window.open(this.href, 'shre', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + width + ',height=' + height);
-				} );
-			} );
-
 		</script>
 
 	</body>
