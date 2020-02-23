@@ -45,19 +45,10 @@
 
 	<body>
 
-		<div class="reveal">
-			<div class="menubar">
-				<ul class="menu">
-					<!-- Here's the menu -->
-					<li><a href="#/authentication">Authentication</a></li>
-					<li><a href="#/authorization">Authorization</a></li>
-					<li><a href="#/sessionmanagement">Session Management</a></li>
-				</ul>
-			</div>
-			
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section data-menu-title="Authentication">
+					<h6>Authentication</h6>
 					<section>
 						<h2>Authentication</h2>
 						<p>
@@ -147,8 +138,7 @@
 					{ src: 'lib/reveal.js/plugin/search/search.js' },
 					{ src: 'lib/reveal.js/plugin/zoom-js/zoom.js' },
 					{ src: 'plugin/menu/menu.js' },
-					{ src: 'plugin/chalkboard/chalkboard.js' },
-					{ src: 'plugin/simplemenu/simplemenu.js' }
+					{ src: 'plugin/chalkboard/chalkboard.js' }
 				],
 			keyboard: {
 					67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
