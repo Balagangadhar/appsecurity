@@ -48,35 +48,95 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section data-menu-title="Authentication">
-					Authentication
-					<section data-markdown data-menu-title="Authentication">
-						- Password
-						- MFA
-						- Tokens
-						- Jsession
-					</section>
-						
-					<section data-markdown data-menu-title="Password">
-						## Password
-					</section>
-						
-					<section data-markdown data-menu-title="MFA">
-						## Multi Factor Authentication
-					</section>	
-					
-					<section data-markdown data-menu-title="Token Based Authentication">
-						## Tokens
-						- JWT
-						- OAuth
-					</section>	
-					
-					<section data-markdown data-menu-title="Session Based Authentication">
-						## JSession
-					</section>	
+				<section data-markdown data-menu-title="Authentication">
+					## Authentication
+					- Password Encoding
+					- MFA
+					- Tokens
+					- Jsession
 
 				</section>
 
+				<section data-menu-title="Password Encoding">
+					<small> Authentication : Password Encoding</small>
+					<section data-markdown data-menu-title="Password Encoding">
+						- Hashing over encryption
+						- Bcrypt
+						- Bcrypt using spring security
+						- Password Encoder Delegation
+						- Summary
+					</section>
+					<section data-markdown data-menu-title="Hashing over encryption">
+						### Hashing over encryption
+					</section>
+					<section data-markdown data-menu-title="Bcrypt">
+						### Bcrypt
+						- What is Bcrypt?
+						- Why should we use over other hashing algorithms?
+						- Format
+						- How to configure using spring security
+					</section>
+					<section data-markdown data-menu-title="Bcrypt using spring security">
+						 Steps to configure Bcrypt in spring security
+						1. Add dependency and create a bean
+							```groovy
+							implementation 'org.springframework.boot:spring-boot-starter-security'
+							```
+							```java
+							@Bean
+							public PasswordEncoder passwordEncoder() {
+							return new BCryptPasswordEncoder();
+							}
+							```
+						1. Inject/Autowire bean into service
+							```java
+							@Autowired
+							private UserDetailsService userDetailsService;
+						```
+						1. Use methods
+							```java
+							To match : passwordEncoder.matches(rawpwd,hashedText)
+							to Encode : passwordEncoder.encode(rawpwd)
+							```
+					</section>
+					<section  data-markdown data-menu-title="Delegating Password Encoder">
+						Delegating Password Encoder
+						- Migration from legacy/other encoding
+						- Spring security configuration
+						```java
+							static PasswordEncoder createDelegatingPasswordEncoder() {
+							String encodingId = "bcrypt";
+							Map<String, PasswordEncoder> encoders = new HashMap<>();
+							encoders.put(encodingId, new BCryptPasswordEncoder());
+							encoders.put("MD5", new org.springframework.security.crypto.password.MessageDigestPasswordEncoder("MD5"));
+							return new DelegatingPasswordEncoder(encodingId, encoders);
+							}
+						```
+					</section>
+					<section data-markdown data-menu-title="Summary">
+						Password Encoding Summary
+						- Use Bcrypt to store passwords unless you have a good reason not to.
+						- Set a reasonable work factor for your system.
+						- Use a salt (modern algorithms do this for you automatically).
+						- Consider using a pepper to provide an additional layer of security.
+					</section>
+					<section data-markdown data-menu-title="References">
+						References
+						- https://owasp.org/www-project-cheat-sheets/cheatsheets/Password_Storage_Cheat_Sheet
+						- https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#core-services-password-encoding
+					</section>
+
+				</section>
+				<!--------------------------- MFA ----------------------------->
+				<section data-menu-title="Multi Factor Authentication">
+					<small> Authentication : MFA</small>
+					<section data-markdown data-menu-title="MFA">
+						MFA
+						- Security Questions
+						- OTP
+						- Push Notifications
+					</section>
+				</section>
 				<section data-menu-title="Authorization">
 					Authorization
 					<section>
