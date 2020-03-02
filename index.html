@@ -50,16 +50,15 @@
 			<div class="slides">
 				<section data-markdown data-menu-title="Authentication">
 					## Authentication
-					- Password Encoding
-					- MFA
-					- Tokens
+					- Passwords
+					- Tokens(JWT)
 					- Jsession
 
 				</section>
 
-				<section data-menu-title="Password Encoding">
-					<small> Authentication : Password Encoding</small>
-					<section data-markdown data-menu-title="Password Encoding">
+				<section data-menu-title="Passwords">
+					<small> Authentication : Passwords</small>
+					<section data-markdown data-menu-title="Passwords: Password Encoding">
 						- Hashing over encryption
 						- Bcrypt
 						- Bcrypt using spring security
@@ -114,29 +113,74 @@
 						```
 					</section>
 					<section data-markdown data-menu-title="Summary">
-						Password Encoding Summary
-						- Use Bcrypt to store passwords unless you have a good reason not to.
-						- Set a reasonable work factor for your system.
+						Passwords Summary
+						```
+						- Use Bcrypt like expensive derivative functions to store passwords.
+						- Set a reasonable work factor for your system to adjust for Moore's law.
 						- Use a salt (modern algorithms do this for you automatically).
 						- Consider using a pepper to provide an additional layer of security.
+						- Mandate password policies
+							- eg. accountlcokout, password expiry
+						- Provide strong authentication
+							- eg. [zxcvbn](https://github.com/dropbox/zxcvbn) or passay
+						- Use dedicated libraries instead of re-inventing for complex use cases like password in history etc
+						- Provide challenge response protocol using MFA
+							- eg fn(MFA & pwd)
+						- SecureRandom instead of Random class for generating passcodes/OTP for MFA
+						```
 					</section>
 					<section data-markdown data-menu-title="References">
 						References
 						- https://owasp.org/www-project-cheat-sheets/cheatsheets/Password_Storage_Cheat_Sheet
 						- https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#core-services-password-encoding
 					</section>
-
 				</section>
-				<!--------------------------- MFA ----------------------------->
-				<section data-menu-title="Multi Factor Authentication">
-					<small> Authentication : MFA</small>
-					<section data-markdown data-menu-title="MFA">
-						MFA
-						- Security Questions
-						- OTP
-						- Push Notifications
+
+				<!-- Java Web Tokens-->
+				<section data-menu-title="JWT">
+					<small> Authentication : JWT</small>
+					<section data-markdown data-menu-title="JWT: Algorithms">
+						Algorithms
+						-TBD
+					</section>
+					<section data-markdown data-menu-title="Token information disclosure">
+						Token information disclosure
+						-TBD
+					</section>
+					<section data-markdown data-menu-title="Weak Token Secret">
+						Weak Token Secret
+						-TBD
+					</section>
+					<section data-markdown data-menu-title="Algorithm Verification">
+						Algorithm Verification
+						-TBD
+					</section>
+					<section data-markdown data-menu-title="Untrusted Claims">
+						Do Not Trust Received Claims
+						-TBD
+					</section>
+					<section data-markdown data-menu-title="Token revocation">
+						Token revocation
+						- Logout
+						- User inactive
+						- Password expired
+					</section>
+					<section data-markdown data-menu-title="Token revocation workaround">
+						Token revocation workaround
+						- Short-spanned tokens
+						- Blacklisting
+						- Pub/sub
+						- OIDC
+					</section>
+					<section data-markdown data-menu-title="Summary">
+						JWT Summary - TBD
+					</section>
+					<section data-markdown data-menu-title="References">
+						References - TBD
 					</section>
 				</section>
+
+				<!-- Authorization -->
 				<section data-menu-title="Authorization">
 					Authorization
 					<section>
@@ -146,7 +190,7 @@
 						</p>
 					</section>
 					<section data-menu-title="oauth2">
-						<h2>oauthws</h2>
+						<h2>oauthw2</h2>
 					</section>
 				</section>
 
