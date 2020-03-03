@@ -73,6 +73,9 @@
 					</section>
 					<section data-markdown data-menu-title="Hashing over encryption">
 						### Hashing over encryption
+						- Why not encryption
+						- What are different hashing algorithms available
+						- SHA-1, SHA-2, Bcrypt, Scrypt etc
 					</section>
 					<section data-markdown data-menu-title="Bcrypt">
 						### Bcrypt
@@ -98,7 +101,7 @@
 							@Autowired
 							private UserDetailsService userDetailsService;
 						```
-						1. Use methods
+						1. Usage
 							```java
 							To match : passwordEncoder.matches(rawpwd,hashedText)
 							to Encode : passwordEncoder.encode(rawpwd)
