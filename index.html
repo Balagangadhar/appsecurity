@@ -74,15 +74,18 @@
 					<section data-markdown data-menu-title="Hashing over encryption">
 						### Hashing over encryption
 						- Why not encryption
-						- What are different hashing algorithms available
-						- SHA-1, SHA-2, Bcrypt, Scrypt etc
+						- What are different hashing algorithms/KDFs available
+						- SHA-2, SHA-3, PBKDF2, Bcrypt, Scrypt, Argon2 etc
 					</section>
-					<section data-markdown data-menu-title="Bcrypt">
-						### Bcrypt
-						- What is Bcrypt?
-						- Why should we use over other hashing algorithms?
-						- Format
-						- How to configure using spring security
+					<section data-menu-title="Bcrypt">
+						<h3>BCrypt</h3>
+						<ul>
+						<li>What is Bcrypt?</li>
+						<li>Why should we use over other hashing algorithms?</li>
+						<li>Format</li>
+							<span style="color:red;">$2a</span><span style="color:blue;">$10</span><span style="color:green;">$N9qo8uLOickgx2ZMRZoMye</span>IjZAgcfl7p92ldGxad68LJZdL17lhWy
+						<li>How to configure using spring security</li>
+						</ul>
 					</section>
 					<section data-markdown data-menu-title="Bcrypt using spring security">
 						 Steps to configure Bcrypt in spring security
@@ -93,7 +96,7 @@
 							```java
 							@Bean
 							public PasswordEncoder passwordEncoder() {
-							return new BCryptPasswordEncoder();
+							return new BCryptPasswordEncoder(10);
 							}
 							```
 						1. Inject/Autowire bean into service
@@ -120,14 +123,15 @@
 							return new DelegatingPasswordEncoder(encodingId, encoders);
 							}
 						```
+						- Check hash format and if it not latest(in the above case, bcrypt) then hash it while authenticating
 					</section>
 					<section data-markdown data-menu-title="Summary">
 						Passwords Summary
 						```
-						- Use Bcrypt like expensive derivative functions to store passwords.
-						- Set a reasonable work factor for your system to adjust for Moore's law.
 						- Use a salt (modern algorithms do this for you automatically).
 						- Consider using a pepper to provide an additional layer of security.
+						- Use Bcrypt like expensive key derivative functions to store passwords.
+						- Set a reasonable work factor for your system to adjust for Moore's law.
 						- Mandate password policies
 							- eg. accountlcokout, password expiry
 						- Provide strong authentication
