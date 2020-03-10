@@ -173,9 +173,20 @@
 				<!-- Java Web Tokens-->
 				<section data-menu-title="JWT">
 					<small> Authentication : JWT</small>
+					<section data-markdown data-menu-title="JWT: Introduction">
+						Introduction
+						TBD : https://github.com/ticarpi/jwt_tool/wiki
+						TBD : https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/JSON%20Web%20Token#jwt-format
+						
+						- JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
+						- Key injection vulnerability(CVE-2018-0114)
+						- Identifying weak keys via a High-speed Dictionary Attack
+
+					</section>
 					<section data-markdown data-menu-title="JWT: Algorithms">
 						Algorithms
-						-TBD
+						- Signing new token with "none" algorithm(CVE-2015-2951)
+						- Signing the asymmetrically-signed token to its symmetric algorithm match(RSA256 to HS256)(CVE-2016-10555)
 					</section>
 					<section data-markdown data-menu-title="Token information disclosure">
 						Token information disclosure
@@ -183,7 +194,7 @@
 					</section>
 					<section data-markdown data-menu-title="Weak Token Secret">
 						Weak Token Secret
-						-TBD
+						- Offline password attach, no noise to the server
 					</section>
 					<section data-markdown data-menu-title="Algorithm Verification">
 						Algorithm Verification
@@ -208,6 +219,14 @@
 					</section>
 					<section data-markdown data-menu-title="Summary">
 						JWT Summary - TBD
+						Restrict accepted algorithms to the ONE you want to use
+						Verify all tokens before processing the payload data
+						Restrict URLs of any JWKS/X509 certificates
+						Use the strongest signing process you can afford the CPU time for
+						Use asymmetric keys if the tokens are used across more than one server
+						Use strong keys/secrets
+						Use the latest version of whichever JWT library you have chosen
+						Always regularly patch your JWT libraries
 					</section>
 					<section data-markdown data-menu-title="References">
 						References - TBD
