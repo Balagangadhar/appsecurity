@@ -69,6 +69,7 @@
 						- Bcrypt
 						- Bcrypt using spring security
 						- Password Encoder Delegation
+						- Demo
 						- Summary
 					</section>
 					<section data-markdown data-menu-title="Hashing over encryption">
@@ -82,12 +83,10 @@
 						<ul>
 						<li>What is Bcrypt?</li>
 						<li>Why should we use over other hashing algorithms?</li>
-						<li>Format</li>
-							<span style="color:red;">$2a</span><span style="color:blue;">$10</span><span style="color:green;">$N9qo8uLOickgx2ZMRZoMye</span>IjZAgcfl7p92ldGxad68LJZdL17lhWy
 						</ul>
 					</section>
 					<section  data-markdown data-menu-title="Bcrypt Format">
-						### More about Bcrypt Format
+						![alt text](images/bcryptformat.svg "Bcrypt Format")
 						```
 						- salt (String)
 							– Optional salt string.
@@ -145,6 +144,9 @@
 						```
 						- Check hash format and if it not latest(in the above case, bcrypt) then hash it while authenticating
 					</section>
+					<section data-menu-title="demos">
+						<img src="demos/bcrypt.gif"/>
+					</section>
 					<section data-markdown data-menu-title="Summary">
 						Passwords Summary
 						```
@@ -179,7 +181,7 @@
 						TBD : https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/JSON%20Web%20Token#jwt-format
 						TBD: Can jwt be encrypted :
 						https://stackoverflow.com/questions/34235875/should-jwt-web-token-be-encrypted
-						
+
 						- JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
 						- Key injection vulnerability(CVE-2018-0114)
 						- Identifying weak keys via a High-speed Dictionary Attack
