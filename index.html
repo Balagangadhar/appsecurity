@@ -176,72 +176,91 @@
 				<section data-menu-title="JWT">
 					<small> Authentication : JWT</small>
 					<section data-markdown data-menu-title="JWT: Introduction">
-						A compact and self-contained way for securely transmitting information between parties  to support interoperability of security services for protocols that use JSON
+						Json Web Token (JWT) is an open standard (RFC 7519) for securely exchanging information between endpoints as JSON object
+						- Some usecases:
+							- OIDC(As an identity token)
+							- OAUTH2(As an access token)
+							- Authentication(As a session object)
 					</section>
 					<section data-markdown data-menu-title="JWT: Features">
 						### Features
-						- Claim
-						- JWS
-						- JWE
-						- Stateless Session
+						- Stateless
+						- Scalable
+						- Cookie less(Beyond browser)
 					</section>
 					<section data-markdown data-menu-title="JWT: Structure">
+						### Structure
+						Base64(header).Basa64(payload).Base64(signature)
+						![alt text](images/jwtstructure.png "JWT Format")
 					</section>
-					<!--						TBD : https://github.com/ticarpi/jwt_tool/wiki-->
-					<!--						TBD : https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/JSON%20Web%20Token#jwt-format-->
-					<!--						TBD: Can jwt be encrypted :-->
-					<!--						https://stackoverflow.com/questions/34235875/should-jwt-web-token-be-encrypted-->
-					<!---->
-					<!--						- JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.-->
-					<!--						- Key injection vulnerability(CVE-2018-0114)-->
-					<!--						- Identifying weak keys via a High-speed Dictionary Attack-->
+					<section data-markdown data-menu-title="JWT: Signature Scheme">
+						Signature Schemes
+							- Symmetric : Recommended within a single trust zone
+								- Sample usecase : if both issuer and verifier is same
+								- Eg : HS256
+							- Assymetric : Recommended in distributed scenarios
+								- if issuer is different from verfier(SSO, OAuth2))
+								- Eg: RS256
+						Security Best Practices
+							- Always verify signatures
+							- Avoid libraries that do not verify signatures
+									- Eg: The decode function of the auth0 Java JWT library
+					</section>
 					<section data-markdown data-menu-title="JWT: Algorithms">
-						Algorithms
-						- Signing new token with "none" algorithm(CVE-2015-2951)
-						- Signing the asymmetrically-signed token to its symmetric algorithm match(RSA256 to HS256)(CVE-2016-10555)
-					</section>
-					<section data-markdown data-menu-title="Token information disclosure">
-						Token information disclosure
-						-TBD
+						Security Concerns
+							- Signing new token with "none" algorithm(CVE-2015-2951)
+							- Signing the asymmetrically-signed token to its symmetric alg
+								- Eg: (RSA256 to HS256)(CVE-2016-10555)
+						Security Best Practices
+							- Use Strong and appropriate algorithms(HS256, RS256 etc)
+							- Use libraries which address CVE-2015-2951,CVE-2016-10555
 					</section>
 					<section data-markdown data-menu-title="Weak Token Secret">
 						Weak Token Secret
-						- Offline password attach, no noise to the server
-					</section>
-					<section data-markdown data-menu-title="Algorithm Verification">
-						Algorithm Verification
-						-TBD
+						- Key injection vulnerability(CVE-2018-0114)
+						- Offline password attack without any noise to the server
+						- Identifying weak keys via a High-speed Dictionary Attack
 					</section>
 					<section data-markdown data-menu-title="Untrusted Claims">
-						Do Not Trust Received Claims
-						-TBD
+						Untrusted Claims
+						- Always verify token at server side, do not trust without verification
+					</section>
+					<section data-markdown data-menu-title="Token information disclosure">
+						Token information disclosure
+						- Never put secured info like passwords, credit card info etc into JWT as token can be read by client
 					</section>
 					<section data-markdown data-menu-title="Token revocation">
-						Token revocation
-						- Logout
-						- User inactive
-						- Password expired
+						Token Revocation
+							- JWT created cannot be invalidated/revocated
+						Usecases
+							- Logout
+							- User inactive
+							- Password expired
+							- User role change
 					</section>
 					<section data-markdown data-menu-title="Token revocation workaround">
-						Token revocation workaround
+						Token revocation workarounds
 						- Short-spanned tokens
 						- Blacklisting
 						- Pub/sub
-						- OIDC
 					</section>
 					<section data-markdown data-menu-title="Summary">
-						JWT Summary - TBD
-						Restrict accepted algorithms to the ONE you want to use
-						Verify all tokens before processing the payload data
-						Restrict URLs of any JWKS/X509 certificates
-						Use the strongest signing process you can afford the CPU time for
-						Use asymmetric keys if the tokens are used across more than one server
-						Use strong keys/secrets
-						Use the latest version of whichever JWT library you have chosen
-						Always regularly patch your JWT libraries
+						Summary
+							- Restrict accepted algorithms to the ONE you want to use
+							- Verify all tokens before processing the payload data
+							- Use the strongest signing process you can afford the CPU time for(Like SHA-2)
+							- Use asymmetric keys if the tokens are used across more than one server
+							- Use strong keys/secrets
+							- Adopt key rotation whenever possible
+							- Use the latest version of whichever JWT library you have chosen
+							- Always regularly patch your JWT libraries
+							- Token revocation should be addressed
+							- JWT is not a public data(it is like a credential, not to be shared)
 					</section>
 					<section data-markdown data-menu-title="References">
-						References - TBD
+						References
+						- https://jwt.io/introduction/
+						- https://tools.ietf.org/html/rfc7518
 					</section>
 				</section>
 
