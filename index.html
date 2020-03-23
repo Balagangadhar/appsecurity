@@ -158,7 +158,7 @@
 							- eg. accountlcokout, password expiry
 						- Provide strong authentication
 							- eg. [zxcvbn](https://github.com/dropbox/zxcvbn) or passay
-						- Use dedicated libraries instead of re-inventing for complex use cases like password in history etc
+						- Use dedicated libraries like openDJ(FR) etc instead of re-inventing for complex use cases like password in history(To measure Levenshtein distance)  etc
 						- Provide challenge response protocol using MFA
 							- eg fn(MFA & pwd)
 						- SecureRandom instead of Random class for generating passcodes/OTP for MFA
@@ -223,7 +223,9 @@
 					</section>
 					<section data-markdown data-menu-title="Untrusted Claims">
 						Untrusted Claims
-						- Always verify token at server side, do not trust without verification
+							- Always verify token at server side, do not trust without verification
+						Security Best Prctice
+							- Use JWE along with JWS
 					</section>
 					<section data-markdown data-menu-title="Token information disclosure">
 						Token information disclosure
@@ -258,12 +260,12 @@
 							- Use the latest version of whichever JWT library you have chosen
 							- Always regularly patch your JWT libraries
 							- Token revocation should be addressed
-							- JWT is not a public data(it is like a credential, not to be shared)
 					</section>
 					<section data-markdown data-menu-title="References">
 						References
 						- https://jwt.io/introduction/
 						- https://tools.ietf.org/html/rfc7518
+						- https://github.com/jwtk/jjwt
 					</section>
 				</section>
 
