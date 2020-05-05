@@ -152,8 +152,9 @@
 						```
 						- Use a salt (modern algorithms do this for you automatically).
 						- Consider using a pepper to provide an additional layer of security.
-						- Use Bcrypt like expensive key derivative functions to store passwords.
+						- Use Bcrypt like expensive key derivative functions to store passwords(Recommended version is $2a and later).
 						- Set a reasonable work factor for your system to adjust for Moore's law.
+							- In case of Bcrypt, min recommended work factor is 10.
 						- Mandate password policies
 							- eg. accountlcokout, password expiry
 						- Provide strong authentication
